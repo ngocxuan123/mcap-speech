@@ -6,19 +6,6 @@ using System.Windows.Forms;
 
 namespace SpeechTextVietNamese
 {
-	public static class GlobalVar
-	{
-		/// <summary>
-		/// Global variable that is list files.
-		/// </summary>
-		public static Dictionary<string, string> SpeechFiles = new Dictionary<string, string>();
-
-		/// <summary>
-		/// Forder speech
-		/// </summary>
-		public static string SpeechFolder = @"E:\Speech\";
-	}
-
 	static class Program
 	{
 		/// <summary>
