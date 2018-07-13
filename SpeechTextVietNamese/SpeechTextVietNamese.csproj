@@ -81,6 +81,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\GlobalVar.cs" />
     <Compile Include="Helper\PasswordVerificationResult.cs" />
     <Compile Include="Helper\EncryptionBase64.cs" />
     <Compile Include="Helper\FileHandle.cs" />
