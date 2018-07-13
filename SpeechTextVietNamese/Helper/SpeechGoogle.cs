@@ -38,17 +38,17 @@ namespace SpeechTextVietNamese.Helper
 				foreach (string name in names)
 				{
 					//string hashName = FileHandle.CheckExist(name);
-					if (GlobalVar.SpeechFiles != null && GlobalVar.SpeechFiles.Count > 0 && GlobalVar.SpeechFiles.Where(c=>c.Equals(name.ToLower())).Count() > 0)
+					if (GlobalVar.SpeechFiles != null && GlobalVar.SpeechFiles.Count > 0 && GlobalVar.SpeechFiles.ContainsKey(name.ToLower()))
 					{
-						media = Player.newMedia($"{GlobalVar.SpeechFolder}{name.ToLower()}.mp3");
+						media = Player.newMedia(GlobalVar.SpeechFiles[name.ToLower()]);
 						playlist.appendItem(media);
 					} else
 					{
 						if (FileHandle.SaveStreamToFile(_source + name, name.ToLower()))
 						{
-							media = Player.newMedia($"{GlobalVar.SpeechFolder}{name.ToLower()}.mp3");
+							GlobalVar.SpeechFiles.Add(name.ToLower(), $"{GlobalVar.SpeechFolder}{name.ToLower()}.mp3");
+							media = Player.newMedia(GlobalVar.SpeechFiles[name.ToLower()]);
 							playlist.appendItem(media);
-							GlobalVar.SpeechFiles.Add(name.ToLower());
 						}
 					}
 				}
