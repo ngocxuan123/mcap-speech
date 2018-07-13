@@ -30,29 +30,21 @@ namespace SpeechTextVietNamese.Helper
 			}
 		}
 
-		public static string CheckExist(string fileName)
+		public static string CheckExist(Dictionary<string, string> owner, string fileName)
 		{
-			if (GlobalVar.SpeechFiles == null) return null;
-			foreach (string item in GlobalVar.SpeechFiles)
-			{
-				if (TryHash.VerifyHashedPassword(item, fileName) == PasswordVerificationResult.Success)
-				{
-					return item;
-				}
-			}
-			return null;
+			return owner.ContainsKey(fileName) ? owner[fileName] : null;
 		}
 
-		public static List<string> FilesInFolder(string path)
+		public static Dictionary<string, string> FilesInFolder(string path)
 		{
-			List<string> files = null;
+			Dictionary<string, string> files = null;
 			if (Directory.Exists(path))
 			{
 				string[] fileEntries = Directory.GetFiles(path);
-				files = new List<string>();
+				files = new Dictionary<string, string>();
 				foreach (string item in fileEntries)
 				{
-					files.Add(item.Substring(0, item.LastIndexOf('.')));
+					files.Add(Path.GetFileNameWithoutExtension(item), $"{item}" );
 				}
 			}
 			return files;
